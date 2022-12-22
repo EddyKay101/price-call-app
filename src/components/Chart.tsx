@@ -1,1 +1,6 @@
-import { VictoryChart, VictoryAxis, VictoryCandleStick } from 'victory-native';
+import { VictoryChart, VictoryAxis, VictoryCandlestick } from 'victory-native';
+
+
+const Chart = () => {
+
+}

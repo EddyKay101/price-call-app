@@ -16,27 +16,28 @@
     "moduleResolution": "node",
     "baseUrl": ".",
     "paths": {
-      "@/components/*": [
-        "src/components/"
+      "@components/*": [
+        "src/components/*"
       ],
-      "@/screens/*": [
-        "src/screens/"
+      "@screens/*": [
+        "src/screens/*"
       ],
-      "@/models/*": [
-        "src/models/"
+      "@models/*": [
+        "src/models/*"
       ],
-      "@/api/*": [
-        "src/api/"
+      "@api/*": [
+        "src/api/*"
       ],
-      "@/images/*": [
-        "src/images/"
+      "@images/*": [
+        "src/images/*"
       ]
     },
     "noEmit": true,
     "resolveJsonModule": true,
     "target": "esnext",
     "types": [
-      "jest"
+      "jest",
+      "node"
     ]
   },
   "exclude": [

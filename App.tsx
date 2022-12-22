@@ -2,17 +2,15 @@ import React, { useEffect, type PropsWithChildren } from 'react';
 import { View, StyleSheet, Text, StatusBar, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Alerts } from '@/models/Alerts.model';
+
 import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
 import icoMoonConfig from './selection.json';
-
-
 import SplashScreen from 'react-native-splash-screen';
-import AlertsScreen from '@/screens/AlertsScreen';
-import HomeScreen from '@/screens/HomeScreen';
-import ChartScreen from '@/screens/ChartScreen';
+import AlertsScreen from '@screens/AlertsScreen';
+import HomeScreen from '@screens/HomeScreen';
+import ChartScreen from '@screens/ChartScreen';
 
-import axios from 'axios';
+
 
 const Icon = createIconSetFromIcoMoon(
   icoMoonConfig,
@@ -20,38 +18,10 @@ const Icon = createIconSetFromIcoMoon(
 
 const Tab = createBottomTabNavigator();
 const App = () => {
-  type GetAlertsResponse = {
-    data: Alerts[];
-  };
-
-  const getData = async () => {
-    try {
-      const { data } = await axios.get<GetAlertsResponse>(
-        'https://price-call.co.uk/alerts',
-        {
-          headers: {
-            Accept: 'application/json'
-          }
-        }
-      );
-      console.log(data);
-      return data;
-    } catch (err) {
-      if (axios.isAxiosError(err)) {
-        console.log(err.message);
-        return err.message;
-      } else {
-        console.log('unexpected error: ', err);
-        return err;
-      }
-    }
-  };
 
   useEffect(() => {
     SplashScreen.hide();
-    // getData();
   });
-  let iconState: Boolean;
 
   return (
 

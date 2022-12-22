@@ -1,10 +1,12 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import Panel from '@components/Panel';
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <Text>Home Screen</Text>
+
+      <Panel />
     </View>
   );
 };
@@ -12,7 +14,7 @@ const HomeScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
+    position: 'relative'
   }
 })
 

@@ -1,10 +1,9 @@
 export interface Price {
     pair: [
         {
-            open: string;
-            high: string;
-            low: string;
-            close: string;
+            open: number;
+            close: number;
+            pair: string;
         }
     ];
 }
