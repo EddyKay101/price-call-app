@@ -9,9 +9,9 @@ import SplashScreen from 'react-native-splash-screen';
 import AlertsScreen from '@screens/AlertsScreen';
 import HomeScreen from '@screens/HomeScreen';
 import ChartScreen from '@screens/ChartScreen';
-
-
-
+import SettingsScreen from '@screens/SettingsScreen';
+import { DARK_THEME } from '@themes/Dark.theme';
+import { ThemeProvider } from '@contexts/ThemeContext';
 const Icon = createIconSetFromIcoMoon(
   icoMoonConfig,
 );
@@ -25,48 +25,52 @@ const App = () => {
 
   return (
 
+    <ThemeProvider initial={DARK_THEME}>
+      <NavigationContainer>
+        <Tab.Navigator
+          screenOptions={({ route }) => ({
+            tabBarIcon: ({ focused }) => {
+              let iconName;
+              switch (route.name) {
+                case 'Home':
+                  iconName = focused ? 'cloudFocused' : 'cloudRegular';
+                  break;
 
-    <NavigationContainer>
-      <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused }) => {
-            let iconName;
-            switch (route.name) {
-              case 'Home':
-                iconName = focused ? 'cloudFocused' : 'cloudRegular';
-                break;
+                case 'Alerts':
+                  iconName = focused ? 'bellFocused' : 'bellRegular';
+                  break;
 
-              case 'Alerts':
-                iconName = focused ? 'bellFocused' : 'bellRegular';
-                break;
+                case 'Chart':
+                  iconName = focused ? 'chartFocused' : 'chartRegular'
+                  break;
 
-              case 'Chart':
-                iconName = focused ? 'chartFocused' : 'chartRegular'
-                break;
+                case 'Settings':
+                  iconName = focused ? 'bellFocused' : 'bellRegular';
+                  break;
 
-            }
-            return (
-              <View>
-                <Icon name={iconName} size={25} />
+              }
+              return (
+                <View>
+                  <Icon name={iconName} size={25} />
 
-              </View>
+                </View>
 
 
 
-            );
-          },
-          headerShown: false,
-          tabBarShowLabel: false
-        })}
-      >
-        <Tab.Screen name="Home" component={HomeScreen} />
-        <Tab.Screen name="Chart" component={ChartScreen} />
-        <Tab.Screen name="Alerts" component={AlertsScreen} />
-      </Tab.Navigator>
-    </NavigationContainer>
-    // <View style={styles.container}>
-    //   <Text>ff</Text>
-    // </View>
+              );
+            },
+            headerShown: false,
+            tabBarShowLabel: false
+          })}
+        >
+          <Tab.Screen name="Home" component={HomeScreen} />
+          <Tab.Screen name="Chart" component={ChartScreen} />
+          <Tab.Screen name="Alerts" component={AlertsScreen} />
+          <Tab.Screen name="Settings" component={SettingsScreen} />
+        </Tab.Navigator>
+      </NavigationContainer>
+    </ThemeProvider>
+
   );
 };
 

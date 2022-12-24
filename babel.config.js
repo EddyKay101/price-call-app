@@ -8,7 +8,10 @@ module.exports = {
                     '@components': './src/components',
                     '@screens': './src/screens',
                     '@models': './src/models',
-                    '@images': './src/images'
+                    '@images': './src/images',
+                    '@contexts': './src/contexts',
+                    '@themes': './src/themes',
+                    '@hooks': './src/hooks'
                 }
             }
         ],

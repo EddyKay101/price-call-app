@@ -8,7 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
     "isolatedModules": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "lib": [
       "es6"
     ],
@@ -30,6 +30,15 @@
       ],
       "@images/*": [
         "src/images/*"
+      ],
+      "@contexts/*": [
+        "src/contexts/*"
+      ],
+      "@themes/*": [
+        "src/themes/*"
+      ],
+      "@hooks/*": [
+        "src/hooks/*"
       ]
     },
     "noEmit": true,
