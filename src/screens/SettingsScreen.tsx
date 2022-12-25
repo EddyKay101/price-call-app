@@ -16,16 +16,13 @@ const SettingsScreen = () => {
 
     </Layout>
 
-    // <ElementHolder text='Light Mode' />
+
 
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
 
-  }
 })
 
 export default SettingsScreen;

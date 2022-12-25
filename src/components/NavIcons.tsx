@@ -11,7 +11,7 @@ const Icon = createIconSetFromIcoMoon(
 const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     icon: {
-      color: theme.color.accents
+      color: theme.color.tertiary
     }
 
 

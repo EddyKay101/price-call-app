@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import axios from 'axios';
 import { VictoryChart, VictoryTheme, VictoryAxis, VictoryCandlestick } from 'victory-native';
-import { Alerts } from '@/models/Alerts.model';
+import { Alerts } from '@models/Alerts.model';
 import { PRICE_CALL_GRAPHQL_URL } from '@env';
 import { request, gql } from 'graphql-request'
+import Layout from '@components/Layout';
 const ChartScreen = () => {
   type GetAlertsResponse = {
     data: Alerts[];
@@ -56,16 +57,15 @@ const ChartScreen = () => {
     //     ]}
     //   />
     // </VictoryChart>
-    <View></View>
+    <Layout title='Chart'>
+
+    </Layout>
 
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
 
-  }
 })
 
 export default ChartScreen;

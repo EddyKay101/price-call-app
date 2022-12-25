@@ -9,7 +9,6 @@ const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     container: {
       flex: 1,
-      top: 0,
       width: '100%',
       backgroundColor: theme.color.secondary,
       height: '100%',
@@ -47,7 +46,7 @@ const Layout = memo<LayoutProps>(({ title, children }) => {
 
   const Styles = useThemeAwareObject(createStyles)
 
-  const [dimX, setDimX] = useState<number>(Dimensions.get('window').width * 0.24)
+  const [dimX, setDimX] = useState<number>(20)
 
   useEffect(() => {
     Dimensions.addEventListener('change', ({ window: { width, height } }) => {

@@ -1,19 +1,16 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
-
-const AlertsScreen = ({ navigation }) => {
+import Layout from '@components/Layout';
+const AlertsScreen = () => {
   return (
-    <View style={styles.container}>
-      <Text>Alerts Screen</Text>
-    </View>
+    <Layout title='Notifications'>
+
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
 
-  }
 })
 
 export default AlertsScreen;

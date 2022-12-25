@@ -26,9 +26,6 @@ const createStyles = (theme: Theme) => {
       width: '100%',
       backgroundColor: theme.color.background,
       height: '100%',
-    },
-    icon: {
-      color: theme.color.accents
     }
   })
   return styles

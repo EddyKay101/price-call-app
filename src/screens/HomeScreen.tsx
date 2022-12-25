@@ -1,21 +1,18 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import Layout from '@components/Layout';
 import Panel from '@components/Panel';
 
 const HomeScreen = () => {
   return (
-    <View style={styles.container}>
-
+    <Layout title='Home'>
       <Panel />
-    </View>
+    </Layout>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative'
-  }
+
 })
 
 export default HomeScreen;
