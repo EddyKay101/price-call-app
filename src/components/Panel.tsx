@@ -2,7 +2,7 @@ import React, { useEffect, memo, useMemo } from 'react';
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Price } from '@models/Price.model';
 import { Theme } from '@models/Theme.model';
-import { useTheme, ThemeProvider } from '@contexts/ThemeContext';
+import { useTheme } from '@contexts/ThemeContext';
 import { DARK_THEME } from '@themes/Dark.theme';
 import { LIGHT_THEME } from '@themes/Light.theme';
 import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';

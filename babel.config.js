@@ -11,7 +11,9 @@ module.exports = {
                     '@images': './src/images',
                     '@contexts': './src/contexts',
                     '@themes': './src/themes',
-                    '@hooks': './src/hooks'
+                    '@hooks': './src/hooks',
+                    '@helpers': './src/helpers',
+
                 }
             }
         ],

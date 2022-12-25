@@ -1,11 +1,11 @@
 import { ColorTheme, Theme } from '@models/Theme.model';
 
 const LIGHT_COLOR_THEME: ColorTheme = {
-    primary: '#fcf8ec',
-    secondary: '#596e79',
-    tertiary: '#c7b198',
-    accents: '#C3CFDF',
-    background: '#F7F7F7'
+    primary: '#ffffff',
+    secondary: '#f2f2f2',
+    tertiary: '#000000',
+    accents: '#a1a1a1',
+    background: '#ffffff'
 };
 
 export const LIGHT_THEME_ID = 'light';

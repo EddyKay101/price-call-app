@@ -39,6 +39,9 @@
       ],
       "@hooks/*": [
         "src/hooks/*"
+      ],
+      "@helpers/*": [
+        "src/helpers/*"
       ]
     },
     "noEmit": true,

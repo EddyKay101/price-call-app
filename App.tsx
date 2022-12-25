@@ -1,36 +1,60 @@
-import React, { useEffect, type PropsWithChildren } from 'react';
-import { View, StyleSheet, Text, StatusBar, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
+import React, { useEffect, useState, memo } from 'react';
+import { View, StyleSheet } from 'react-native';
+import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { createIconSetFromIcoMoon } from 'react-native-vector-icons';
-import icoMoonConfig from './selection.json';
+
 import SplashScreen from 'react-native-splash-screen';
 import AlertsScreen from '@screens/AlertsScreen';
 import HomeScreen from '@screens/HomeScreen';
 import ChartScreen from '@screens/ChartScreen';
 import SettingsScreen from '@screens/SettingsScreen';
+import { Theme } from '@models/Theme.model';
 import { DARK_THEME } from '@themes/Dark.theme';
 import { ThemeProvider } from '@contexts/ThemeContext';
-const Icon = createIconSetFromIcoMoon(
-  icoMoonConfig,
-);
+import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
+import NavPanel from '@components/NavPanel';
+import NavIcon from '@components/NavIcons';
+
+
 
 const Tab = createBottomTabNavigator();
-const App = () => {
+
+const createStyles = (theme: Theme) => {
+  const styles = StyleSheet.create({
+    panel: {
+      width: '100%',
+      backgroundColor: theme.color.background,
+      height: '100%',
+    },
+    icon: {
+      color: theme.color.accents
+    }
+  })
+  return styles
+}
+
+
+
+const App = memo(() => {
+  const Styles = useThemeAwareObject(createStyles);
 
   useEffect(() => {
+
     SplashScreen.hide();
   });
 
-  return (
 
+
+  return (
     <ThemeProvider initial={DARK_THEME}>
+
       <NavigationContainer>
+
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused }) => {
-              let iconName;
+              let iconName: string = '';
               switch (route.name) {
                 case 'Home':
                   iconName = focused ? 'cloudFocused' : 'cloudRegular';
@@ -51,7 +75,7 @@ const App = () => {
               }
               return (
                 <View>
-                  <Icon name={iconName} size={25} />
+                  <NavIcon iname={iconName} />
 
                 </View>
 
@@ -60,7 +84,12 @@ const App = () => {
               );
             },
             headerShown: false,
-            tabBarShowLabel: false
+            tabBarShowLabel: false,
+            tabBarBackground: () => (
+              <View style={Styles.panel}>
+                <NavPanel></NavPanel>
+              </View>
+            )
           })}
         >
           <Tab.Screen name="Home" component={HomeScreen} />
@@ -68,29 +97,14 @@ const App = () => {
           <Tab.Screen name="Alerts" component={AlertsScreen} />
           <Tab.Screen name="Settings" component={SettingsScreen} />
         </Tab.Navigator>
+
+
       </NavigationContainer>
     </ThemeProvider>
 
   );
-};
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    backgroundColor: '#D6DCF7'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10
-  },
-  subText: {
-    textAlign: 'center',
-    color: '#dddd',
-    marginBottom: 5
-  }
 });
 
+
 export default App;
+

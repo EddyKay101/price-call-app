@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
+import Layout from '@components/Layout';
 import ElementHolder from '@components/ElementHolder';
 const SettingsScreen = () => {
 
@@ -11,9 +12,11 @@ const SettingsScreen = () => {
   });
   return (
 
+    <Layout title='Settings'>
 
+    </Layout>
 
-    <ElementHolder text='Light Mode' />
+    // <ElementHolder text='Light Mode' />
 
   );
 };
