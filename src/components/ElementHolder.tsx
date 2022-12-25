@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useMemo } from 'react';
+import { ReactNode, useEffect, memo, useMemo } from 'react';
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Theme } from '@models/Theme.model';
 import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
@@ -8,7 +8,7 @@ const createStyles = (theme: Theme) => {
     container: {
       width: '100%',
       backgroundColor: theme.color.background,
-      height: '10%',
+      height: '8%',
     },
 
     text: {
@@ -20,16 +20,19 @@ const createStyles = (theme: Theme) => {
   return styles
 }
 
-interface ElementHolderProps {
-  text: string
+type ElementHolderProps = {
+  text: string;
+  style?: any
+  children?: ReactNode
 }
 
-const ElementHolder = memo<ElementHolderProps>(({ text }) => {
+const ElementHolder = memo<ElementHolderProps>(({ text, style, children }) => {
   const Styles = useThemeAwareObject(createStyles)
 
   return (
-    <View style={Styles.container}>
+    <View style={[Styles.container, { ...style }]}>
       <Text style={Styles.text}>{text}</Text>
+      {children}
     </View>
   )
 })
