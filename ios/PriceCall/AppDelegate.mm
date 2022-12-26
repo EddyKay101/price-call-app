@@ -3,7 +3,7 @@
 #import <React/RCTBridge.h>
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
-
+#import "Orientation.h"
 #import <React/RCTAppSetupUtils.h>
 #import "RNSplashScreen.h"
 #if RCT_NEW_ARCH_ENABLED
@@ -60,6 +60,10 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
   
   [RNSplashScreen show];
   return YES;
+}
+
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
+  return [Orientation getOrientation];
 }
 
 /// This method controls whether the `concurrentRoot`feature of React18 is turned on or off.
@@ -131,5 +135,6 @@ static NSString *const kRNConcurrentRoot = @"concurrentRoot";
 }
 
 #endif
+
 
 @end

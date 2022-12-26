@@ -7,13 +7,13 @@ const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
-      backgroundColor: theme.color.background,
+      backgroundColor: theme.color.accents,
       height: '8%',
     },
 
     text: {
       padding: 24,
-      color: theme.color.tertiary
+      color: theme.color.background
     },
 
   })

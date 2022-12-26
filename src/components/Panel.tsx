@@ -6,8 +6,8 @@ import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
 const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     container: {
-      top: 100,
-      backgroundColor: theme.color.background,
+      top: 0,
+      backgroundColor: theme.color.tertiary,
       height: '50%',
     },
 

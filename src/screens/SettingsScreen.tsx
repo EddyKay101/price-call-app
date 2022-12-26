@@ -4,8 +4,6 @@ import Layout from '@components/Layout';
 import ElementHolder from '@components/ElementHolder';
 import { Theme } from '@models/Theme.model';
 import { useTheme } from '@contexts/ThemeContext';
-import { DARK_THEME } from '@themes/Dark.theme';
-import { LIGHT_THEME } from '@themes/Light.theme';
 import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
 import Orientation from 'react-native-orientation-locker';
 const SettingsScreen = () => {

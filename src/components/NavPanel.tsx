@@ -7,7 +7,7 @@ const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     container: {
       width: '100%',
-      backgroundColor: theme.color.background,
+      backgroundColor: theme.color.secondary,
       height: '100%',
     },
 

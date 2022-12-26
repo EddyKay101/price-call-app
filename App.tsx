@@ -16,7 +16,19 @@ import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
 import NavPanel from '@components/NavPanel';
 import NavIcon from '@components/NavIcons';
 
-
+import {
+  faChartBar
+} from '@fortawesome/free-regular-svg-icons'
+import {
+  faChartSimple,
+  faBell,
+  faSatelliteDish,
+  faGear,
+  faGears,
+  faLandmarkDome,
+  faHouse
+} from '@fortawesome/free-solid-svg-icons'
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 const Tab = createBottomTabNavigator();
 
@@ -51,28 +63,33 @@ const App = memo(() => {
         <Tab.Navigator
           screenOptions={({ route }) => ({
             tabBarIcon: ({ focused }) => {
-              let iconName: string = '';
+              let iconName: any = null;
+              let size = 25;
               switch (route.name) {
                 case 'Home':
-                  iconName = focused ? 'cloudFocused' : 'cloudRegular';
+                  iconName = focused ? faLandmarkDome : faHouse;
+                  size = focused ? 28 : 25;
                   break;
 
                 case 'Alerts':
-                  iconName = focused ? 'bellFocused' : 'bellRegular';
+                  iconName = focused ? faSatelliteDish : faBell;
+                  size = focused ? 28 : 25;
                   break;
 
                 case 'Chart':
-                  iconName = focused ? 'chartFocused' : 'chartRegular'
+                  iconName = focused ? faChartBar : faChartSimple
+                  size = focused ? 28 : 25;
                   break;
 
                 case 'Settings':
-                  iconName = focused ? 'bellFocused' : 'bellRegular';
+                  iconName = focused ? faGears : faGear;
+                  size = focused ? 28 : 25;
                   break;
 
               }
               return (
                 <View>
-                  <NavIcon iname={iconName} />
+                  <NavIcon iname={iconName} size={size} />
 
                 </View>
 

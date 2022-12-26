@@ -10,21 +10,21 @@ const createStyles = (theme: Theme) => {
     container: {
       flex: 1,
       width: '100%',
-      backgroundColor: theme.color.secondary,
+      backgroundColor: theme.color.primary,
       height: '100%',
     },
 
     topPanel: {
       top: 0,
       width: '100%',
-      backgroundColor: theme.color.primary,
+      backgroundColor: theme.color.secondary,
       height: '13%',
       justifyContent: 'center'
     },
 
     text: {
       padding: 24,
-      color: theme.color.tertiary,
+      color: theme.color.accents,
       textAlign: 'center',
       alignSelf: 'center',
       justifyContent: 'center',
