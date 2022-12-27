@@ -16,6 +16,9 @@ const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     icon: {
       color: theme.color.accents
+    },
+    iconFocused: {
+      color: theme.color.misc
     }
 
 
@@ -26,16 +29,17 @@ const createStyles = (theme: Theme) => {
 interface NavIconProps {
   iname: IconProp;
   size: number;
+  focused: Boolean
 }
 
 
 
-const NavIcon = ({ iname, size }: NavIconProps) => {
+const NavIcon = ({ iname, size, focused }: NavIconProps) => {
   const Styles = useThemeAwareObject(createStyles)
 
   return (
     // <Icon name={iname} size={25} style={Styles.icon} />
-    <FontAwesomeIcon style={Styles.icon} size={size} icon={iname} />
+    <FontAwesomeIcon style={focused ? Styles.iconFocused : Styles.icon} size={size} icon={iname} />
   )
 }
 

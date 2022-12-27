@@ -1,11 +1,12 @@
 import { ColorTheme, Theme } from '@models/Theme.model';
 
 const DARK_COLOR_THEME: ColorTheme = {
-    primary: '#0A0708',
-    secondary: '#444444',
-    tertiary: '#747474',
-    accents: '#B1B1B1',
-    background: '#0A0708'
+    primary: '#181b22',
+    secondary: '#26303c',
+    tertiary: '#5d6771',
+    accents: '#a09fa7',
+    background: '#e7e6ea',
+    misc: '#ecf1fa'
 };
 
 export const DARK_THEME_ID = 'dark';

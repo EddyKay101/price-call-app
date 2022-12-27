@@ -89,7 +89,7 @@ const App = memo(() => {
               }
               return (
                 <View>
-                  <NavIcon iname={iconName} size={size} />
+                  <NavIcon focused={focused} iname={iconName} size={size} />
 
                 </View>
 

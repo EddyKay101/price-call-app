@@ -1,4 +1,4 @@
-import React, { useEffect, memo, useMemo } from 'react';
+import React, { ReactNode, useEffect, memo, useMemo } from 'react';
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
 import { Price } from '@models/Price.model';
 import { Theme } from '@models/Theme.model';
@@ -8,7 +8,8 @@ const createStyles = (theme: Theme) => {
     container: {
       top: 0,
       backgroundColor: theme.color.tertiary,
-      height: '50%',
+      height: '40%',
+      maxHeight: '40%'
     },
 
     text: {
@@ -24,9 +25,12 @@ const createStyles = (theme: Theme) => {
   return styles
 }
 
+interface PanelProps {
+  children?: ReactNode;
+}
 
 
-const Panel = memo(() => {
+const Panel = memo<PanelProps>(({ children }) => {
   const Styles = useThemeAwareObject(createStyles);
 
   const isPortrait = () => {
@@ -43,7 +47,7 @@ const Panel = memo(() => {
   return (
 
     <View style={Styles.container}>
-      <Text style={Styles.text}>Panel</Text>
+      {children}
     </View>
 
 

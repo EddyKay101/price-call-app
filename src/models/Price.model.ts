@@ -1,5 +1,5 @@
 export interface Price {
-    pair: [
+    prices: [
         {
             open: number;
             close: number;
