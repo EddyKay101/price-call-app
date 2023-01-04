@@ -9,6 +9,7 @@ const createStyles = (theme: Theme) => {
       width: '100%',
       backgroundColor: theme.color.misc,
       height: '8%',
+      position: 'relative'
     },
 
     text: {
@@ -21,7 +22,7 @@ const createStyles = (theme: Theme) => {
 }
 
 type ElementHolderProps = {
-  text: string;
+  text?: string;
   style?: any
   children?: ReactNode
 }

@@ -1,15 +1,13 @@
-import React, { ReactNode, useEffect, memo, useMemo } from 'react';
+import { ReactNode, useEffect, memo, useMemo } from 'react';
 import { View, StyleSheet, Text, Dimensions, TouchableOpacity } from 'react-native';
-import { Price } from '@models/Price.model';
 import { Theme } from '@models/Theme.model';
 import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
 const createStyles = (theme: Theme) => {
   const styles = StyleSheet.create({
     container: {
-      top: 0,
+
       backgroundColor: theme.color.tertiary,
-      height: '40%',
-      maxHeight: '40%'
+
     },
 
     text: {
@@ -26,11 +24,12 @@ const createStyles = (theme: Theme) => {
 }
 
 interface PanelProps {
+  style?: any
   children?: ReactNode;
 }
 
 
-const Panel = memo<PanelProps>(({ children }) => {
+const Panel = memo<PanelProps>(({ style, children }) => {
   const Styles = useThemeAwareObject(createStyles);
 
   const isPortrait = () => {
@@ -46,7 +45,7 @@ const Panel = memo<PanelProps>(({ children }) => {
 
   return (
 
-    <View style={Styles.container}>
+    <View style={[Styles.container, { ...style }]}>
       {children}
     </View>
 

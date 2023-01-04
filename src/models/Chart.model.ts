@@ -1,11 +1,20 @@
 export interface Chart {
-    data: [
+    chart: [
         {
-            open: number;
+            close: number;
+            date?: Date;
             high: number;
             low: number;
-            close: number;
-            date: number;
+            open: number;
+            x?: Date;
         }
     ];
+}
+
+export interface ChartObj {
+    close: number;
+    high: number;
+    low: number;
+    open: number;
+    x?: Date;
 }

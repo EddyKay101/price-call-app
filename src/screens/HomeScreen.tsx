@@ -24,13 +24,29 @@ const createStyles = (theme: Theme) => {
       flex: 1,
       marginTop: 0,
     },
+    panel: {
+      height: '40%',
+      maxHeight: '40%',
+      top: 0
+    },
+    bottomPanel: {
+      backgroundColor: theme.color.primary,
+      height: '100%',
+      maxHeight: '100%',
+    },
     item: {
       padding: 19,
+      display: 'flex',
+      flexDirection: 'row',
+      justifyContent: 'space-between'
 
     },
     itemText: {
       color: theme.color.misc,
-      fontSize: 16
+      fontSize: 18
+    },
+    itemForexText: {
+      fontSize: 18
     }
   })
   return styles
@@ -61,21 +77,21 @@ const HomeScreen = () => {
   const [data, setData] = useState<Price>();
 
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      request(PRICE_CALL_GRAPHQL_URL, query)
-        .then((data) => {
-          setData(() => data.prices)
-        })
-    })
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     request(PRICE_CALL_GRAPHQL_URL, query)
+  //       .then((data) => {
+  //         setData(() => data.prices)
+  //       })
+  //   }, 1000)
 
-    return () => clearTimeout(timer)
-  }, [])
+  //   return () => clearTimeout(timer)
+  // })
 
   return (
 
     <Layout title='Home'>
-      <Panel>
+      <Panel style={Styles.panel}>
         <FlatList
 
           keyExtractor={(price) => price.pair}
@@ -83,8 +99,10 @@ const HomeScreen = () => {
           renderItem={({ item, index }) => {
             return (
               <SafeAreaView style={Styles.container}>
-                <View style={[Styles.item, index === 0 && { marginTop: 25 }, index % 2 === 0 ? InlineStyles.itemPanelEven : InlineStyles.itemPanelOdd]}>
-                  <Text style={[Styles.itemText, index % 2 === 0 ? InlineStyles.itemTextEven : InlineStyles.itemTextOdd]}>{item.pair}</Text>
+                <View style={[Styles.item, index === 0 && { marginTop: 3 }, index % 2 === 0 ? InlineStyles.itemPanelEven : InlineStyles.itemPanelOdd]}>
+                  <Text style={[Styles.itemText, index % 2 === 0 ? InlineStyles.itemTextEven : InlineStyles.itemTextOdd]}>{item.pair.slice(0, 3) + '/' + item.pair.slice(item.pair.length - 3)}</Text>
+                  <Text style={[Styles.itemForexText, { color: item.open > item.close ? 'green' : 'red' }]}>{item.open}</Text>
+                  <Text style={[Styles.itemForexText, { color: item.close > item.open ? 'green' : 'red' }]}>{item.close}</Text>
                 </View>
 
               </SafeAreaView>
@@ -92,6 +110,10 @@ const HomeScreen = () => {
           }}
         />
       </Panel>
+      <Panel style={Styles.bottomPanel}>
+
+      </Panel>
+
     </Layout>
   );
 };
