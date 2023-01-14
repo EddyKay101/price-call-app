@@ -46,8 +46,17 @@ const createStyles = (theme: Theme) => {
       fontSize: 18
     },
     itemForexText: {
-      fontSize: 18
+      fontSize: 20
+    },
+    priceText: {
+      color: theme.color.misc,
+      fontSize: 10
+    },
+    textContainer: {
+      display: 'flex',
+      flexDirection: 'row'
     }
+
   })
   return styles
 }
@@ -77,16 +86,53 @@ const HomeScreen = () => {
   const [data, setData] = useState<Price>();
 
 
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     request(PRICE_CALL_GRAPHQL_URL, query)
-  //       .then((data) => {
-  //         setData(() => data.prices)
-  //       })
-  //   }, 1000)
+  function removeAfterPeriod(string: string) {
+    const substrings = string.split(".");
+    substrings.pop();
+    return substrings.join(".") + ".";
+  }
 
-  //   return () => clearTimeout(timer)
-  // })
+  function removeBeforePeriod(string: string) {
+    const substrings = string.split(".");
+    substrings.shift();
+    return substrings.join(".");
+  }
+
+  function LastCharacterSuperscriptOpen({ string, item }: any) {
+    const lastCharacter = string.charAt(string.length - 1);
+    return (
+
+      <Text style={{ fontSize: 20, fontWeight: 'bold', position: 'relative', color: item.open > item.close ? 'green' : 'red', }}>
+        {string.substring(0, string.length - 1)}
+        <Text style={{ fontSize: 12, position: 'absolute', bottom: 0 }}>
+          {lastCharacter}
+        </Text>
+      </Text>
+    );
+  }
+  function LastCharacterSuperscriptClose({ string, item }: any) {
+    const lastCharacter = string.charAt(string.length - 1);
+    return (
+
+      <Text style={{ fontSize: 20, fontWeight: 'bold', position: 'relative', color: item.close > item.open ? 'green' : 'red' }}>
+        {string.substring(0, string.length - 1)}
+        <Text style={{ fontSize: 12, position: 'absolute', bottom: 0 }}>
+          {lastCharacter}
+        </Text>
+      </Text>
+    );
+  }
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      request(PRICE_CALL_GRAPHQL_URL, query)
+        .then((data) => {
+          setData(() => data.prices)
+        })
+    }, 1000)
+
+    return () => clearTimeout(timer)
+  })
 
   return (
 
@@ -101,8 +147,27 @@ const HomeScreen = () => {
               <SafeAreaView style={Styles.container}>
                 <View style={[Styles.item, index === 0 && { marginTop: 3 }, index % 2 === 0 ? InlineStyles.itemPanelEven : InlineStyles.itemPanelOdd]}>
                   <Text style={[Styles.itemText, index % 2 === 0 ? InlineStyles.itemTextEven : InlineStyles.itemTextOdd]}>{item.pair.slice(0, 3) + '/' + item.pair.slice(item.pair.length - 3)}</Text>
-                  <Text style={[Styles.itemForexText, { color: item.open > item.close ? 'green' : 'red' }]}>{item.open}</Text>
-                  <Text style={[Styles.itemForexText, { color: item.close > item.open ? 'green' : 'red' }]}>{item.close}</Text>
+                  <View>
+                    <View>
+                      <Text style={Styles.priceText}>Current</Text>
+
+                      <View style={Styles.textContainer}>
+                        <Text style={[Styles.itemForexText, { color: item.open > item.close ? 'green' : 'red', }]}>{removeAfterPeriod(item.open.toString())}</Text>
+
+                        <LastCharacterSuperscriptOpen string={removeBeforePeriod(item.open.toString())} item={item} />
+                      </View>
+                    </View>
+                  </View>
+                  <View>
+                    <Text style={Styles.priceText}>Previous</Text>
+                    <View style={Styles.textContainer}>
+                      <Text style={[Styles.itemForexText, { color: item.close > item.open ? 'green' : 'red' }]}>{removeAfterPeriod(item.close.toString())}</Text>
+
+                      <LastCharacterSuperscriptClose string={removeBeforePeriod(item.close.toString())} item={item} />
+                    </View>
+
+                  </View>
+
                 </View>
 
               </SafeAreaView>

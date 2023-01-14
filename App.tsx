@@ -12,10 +12,10 @@ import SettingsScreen from '@screens/SettingsScreen';
 import { Theme } from '@models/Theme.model';
 import { DARK_THEME } from '@themes/Dark.theme';
 import { ThemeProvider } from '@contexts/ThemeContext';
+import { ChartProvider } from '@contexts/ChartContext';
 import { useThemeAwareObject } from '@hooks/ThemeAwareObject.hook';
 import NavPanel from '@components/NavPanel';
 import NavIcon from '@components/NavIcons';
-
 import {
   faChartBar
 } from '@fortawesome/free-regular-svg-icons'
@@ -57,63 +57,66 @@ const App = memo(() => {
 
   return (
     <ThemeProvider initial={DARK_THEME}>
+      <ChartProvider initial={'candle'}>
 
-      <NavigationContainer>
 
-        <Tab.Navigator
-          screenOptions={({ route }) => ({
-            tabBarIcon: ({ focused }) => {
-              let iconName: any = null;
-              let size = 25;
-              switch (route.name) {
-                case 'Home':
-                  iconName = focused ? faLandmarkDome : faHouse;
-                  size = focused ? 28 : 25;
-                  break;
+        <NavigationContainer>
 
-                case 'Alerts':
-                  iconName = focused ? faSatelliteDish : faBell;
-                  size = focused ? 28 : 25;
-                  break;
+          <Tab.Navigator
+            screenOptions={({ route }) => ({
+              tabBarIcon: ({ focused }) => {
+                let iconName: any = null;
+                let size = 25;
+                switch (route.name) {
+                  case 'Home':
+                    iconName = focused ? faLandmarkDome : faHouse;
+                    size = focused ? 28 : 25;
+                    break;
 
-                case 'Chart':
-                  iconName = focused ? faChartBar : faChartSimple
-                  size = focused ? 28 : 25;
-                  break;
+                  case 'Alerts':
+                    iconName = focused ? faSatelliteDish : faBell;
+                    size = focused ? 28 : 25;
+                    break;
 
-                case 'Settings':
-                  iconName = focused ? faGears : faGear;
-                  size = focused ? 28 : 25;
-                  break;
+                  case 'Chart':
+                    iconName = focused ? faChartBar : faChartSimple
+                    size = focused ? 28 : 25;
+                    break;
 
-              }
-              return (
-                <View>
-                  <NavIcon focused={focused} iname={iconName} size={size} />
+                  case 'Settings':
+                    iconName = focused ? faGears : faGear;
+                    size = focused ? 28 : 25;
+                    break;
 
+                }
+                return (
+                  <View>
+                    <NavIcon focused={focused} iname={iconName} size={size} />
+
+                  </View>
+
+
+
+                );
+              },
+              headerShown: false,
+              tabBarShowLabel: false,
+              tabBarBackground: () => (
+                <View style={Styles.panel}>
+                  <NavPanel></NavPanel>
                 </View>
+              )
+            })}
+          >
+            <Tab.Screen name="Home" component={HomeScreen} />
+            <Tab.Screen name="Chart" component={ChartScreen} />
+            <Tab.Screen name="Alerts" component={AlertsScreen} />
+            <Tab.Screen name="Settings" component={SettingsScreen} />
+          </Tab.Navigator>
 
 
-
-              );
-            },
-            headerShown: false,
-            tabBarShowLabel: false,
-            tabBarBackground: () => (
-              <View style={Styles.panel}>
-                <NavPanel></NavPanel>
-              </View>
-            )
-          })}
-        >
-          <Tab.Screen name="Home" component={HomeScreen} />
-          <Tab.Screen name="Chart" component={ChartScreen} />
-          <Tab.Screen name="Alerts" component={AlertsScreen} />
-          <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-
-
-      </NavigationContainer>
+        </NavigationContainer>
+      </ChartProvider>
     </ThemeProvider>
 
   );
