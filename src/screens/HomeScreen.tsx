@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { SafeAreaView, View, StyleSheet, Text, FlatList, TouchableWithoutFeedback, ScrollView, Button } from 'react-native';
 import Layout from '@components/Layout';
 import Panel from '@components/Panel';
@@ -67,7 +67,8 @@ const createStyles = (theme: Theme) => {
 }
 
 
-const HomeScreen = () => {
+const HomeScreen = memo(() => {
+
   const Styles = useThemeAwareObject(createStyles);
 
   const createInlineStyles = (theme: Theme) => {
@@ -129,32 +130,34 @@ const HomeScreen = () => {
   }
 
 
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     const intervalId = setInterval(() => {
 
-  // const timer = setTimeout(() => {
-  //   request(PRICE_CALL_GRAPHQL_URL, query)
-  //     .then((data) => {
-  //       setData(() => data.prices)
-  //     })
-  // }, 1000)
+  //       request(PRICE_CALL_GRAPHQL_URL, query)
+  //         .then((data) => {
+  //           setData(() => data.prices)
+  //         })
 
-  // return () => clearTimeout(timer)
+  //     }, 5000);
+  //     return () => clearInterval(intervalId);
+  //   }, [])
 
 
-  // useEffect(() => {
-  //   console.log('entry')
-  //   request(PRICE_CALL_GRAPHQL_URL, query)
-  //     .then((data) => {
-  //       setData(() => data.prices)
-  //     })
-  // }, [])
+  // );
 
-  useFocusEffect(() => {
-    const fetchData = async () => {
-      const data = await request(PRICE_CALL_GRAPHQL_URL, query);
-      setData(data.prices);
-    }
-    fetchData();
-  });
+  useFocusEffect(
+    useCallback(() => {
+      const intervalId = setInterval(() => {
+        // Fetch data from API here
+        axios.get('https://price-call.co.uk/prices')
+          .then(response => setData(response.data))
+          .catch(error => console.log(error));
+      }, 300000);
+
+      return () => clearInterval(intervalId);
+    }, [])
+  );
 
 
 
@@ -195,7 +198,7 @@ const HomeScreen = () => {
         <FlatList
           showsVerticalScrollIndicator={false}
           keyExtractor={(price) => price.pair}
-          data={data?.prices}
+          data={data?.data}
           renderItem={({ item, index }) => {
             return (
               <SafeAreaView style={Styles.container}>
@@ -248,6 +251,7 @@ const HomeScreen = () => {
         }}></Button> */}
         <ScrollView showsVerticalScrollIndicator={false}>
           {
+            newsList &&
             newsList.map((lis, index) => (
               <NewsList payload={lis} key={index} />
             ))
@@ -262,7 +266,8 @@ const HomeScreen = () => {
 
     </Layout>
   );
-};
+
+});
 
 
 
